@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    target: 'server',
     webpack(config) {
         config.module.rules.push({
             test: /\.svg$/,
@@ -7,7 +8,12 @@ const nextConfig = {
         });
 
         return config;
-    }
+    },
+    output: "standalone",
+    plugins: {
+        tailwindcss: {},
+        autoprefixer: {},
+    },
 }
 
 module.exports = nextConfig

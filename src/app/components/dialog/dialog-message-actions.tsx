@@ -1,7 +1,6 @@
 import {ClearOutlined} from '@ant-design/icons';
 import styles from '@/app/components/dialog/dialog-message-action.module.scss';
 import {Select} from 'antd'
-import BreakIcon from "../../icons/break.svg";
 import {userChatStore} from '@/app/store/chat-store';
 import {GptVersion} from '../../constants'
 import {SessionConfig} from "@/types/chat";
@@ -74,15 +73,22 @@ export default function DialogMessagesActions(props: {
     const {config} = props
     return <div className={styles['chat-input-actions']}>
         <Select
-            value={config?.gptVersion??GptVersion.GPT_3_5_TURBO}
+            value={config?.gptVersion??GptVersion.GLM_4}
             style={{ width: 160 }}
             options={[
+                // { value: GptVersion.CHATGLM_LITE, label: 'chatglm_lite' },
+                // { value: GptVersion.CHATGLM_STD, label: 'chatglm_std' },
+                // { value: GptVersion.CHATGLM_PRO, label: 'chatglm_pro' },
+                { value: GptVersion.GLM_4, label: 'glm-4' },
+                // { value: GptVersion.DALL_E_3, label: 'dall-e-3(画图)' },
+                // { value: GptVersion.GPT_3_5_TURBO_16K, label: 'gpt-3.5-turbo-16k' },
+                // { value: GptVersion.DALL_E_2, label: 'dall-e-2(画图)' },
                 { value: GptVersion.GPT_3_5_TURBO, label: 'gpt-3.5-turbo' },
-                { value: GptVersion.GPT_3_5_TURBO_16K, label: 'gpt-3.5-turbo-16k' },
-                { value: GptVersion.TEXT_DAVINCI_002, label: 'text-davinci-002' },
-                { value: GptVersion.TEXT_DAVINCI_003, label: 'text-davinci-003' },
-                { value: GptVersion.GPT_4, label: 'gpt-4【暂无】' },
-                { value: GptVersion.GPT_4_32K, label: 'gpt-4-32k【暂无】' },
+                { value: GptVersion.GPT_4, label: 'gpt-4' },
+                // { value: GptVersion.GPT_4o, label: 'gpt-4o' },
+                // { value: GptVersion.CHATGLM_6B_SSE, label: 'chatGLM_6b_SSE' },
+                // { value: GptVersion.GPT_4, label: 'gpt-4【暂无】' },
+                // { value: GptVersion.GPT_4_32K, label: 'gpt-4-32k【暂无】' },
             ]}
             onChange={(value) => {
                 chatStore.updateCurrentSession((session) => {

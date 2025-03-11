@@ -29,6 +29,23 @@
   margin: 15px auto 0;
 }
 
+.sidebar-mall {
+  width: 30px;
+  height: 30px;
+  position: relative;
+  margin: 15px auto 0;
+}
+
+.sidebar-git {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  display: block;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .action-button {
   display: inline-flex;
   margin-top: 3px;

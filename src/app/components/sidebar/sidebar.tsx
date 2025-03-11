@@ -6,22 +6,30 @@ import RoleIcon from "../../icons/role.svg";
 import MaxIcon from "../../icons/max.svg";
 import MinIcon from "../../icons/min.svg";
 import ExitIcon from "../../icons/exit.svg";
+import SaleIcon from "../../icons/sale.svg";
+import GitIcon from "../../icons/git.svg";
+import MarketIcon from "../../icons/market.svg";
 
 import {useNavigate} from "react-router-dom";
 import {Path} from "@/app/constants";
 import {IconButton} from "@/app/components/button/button";
 import {useAppConfig} from "@/app/store/config";
+import {useAccessStore} from "@/app/store/access";
 
 export function SideBar() {
 
     const navigate = useNavigate();
     const config = useAppConfig();
+    const access = useAccessStore();
 
     return (
         <div className={styles.sidebar}>
             <div className={styles["action-button"]}>
                 <IconButton icon={<ExitIcon/>} backgroundColor={"#ff4e4e"} onClick={() => {
-                    alert("尚未实现");
+                    const confirmed = window.confirm('你是否确定退出登录？');
+                    if (confirmed) {
+                        access.goToLogin();
+                    }
                 }}/>
                 <IconButton icon={<MinIcon/>} backgroundColor={"#f3c910"} onClick={() => {
                     config.update(
@@ -51,6 +59,27 @@ export function SideBar() {
                      navigate(Path.Role)
                  }}>
                 <RoleIcon/>
+            </div>
+
+            <div className={styles["sidebar-mall"]}
+                 onClick={() => {
+                     navigate(Path.Sale)
+                 }}>
+                <SaleIcon/>
+            </div>
+
+            <div className={styles["sidebar-mall"]}
+                 onClick={() => {
+                     navigate(Path.Market)
+                 }}>
+                <MarketIcon/>
+            </div>
+
+            <div className={styles["sidebar-git"]}
+                 onClick={() => {
+                     window.open('https://bugstack.cn/md/project/chatgpt/chatgpt.html');
+                 }}>
+                <GitIcon/>
             </div>
 
         </div>
