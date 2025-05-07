@@ -2,11 +2,8 @@ import {GptVersion} from "@/app/constants";
 import {useAccessStore} from "@/app/store/access";
 import {MessageRole} from "@/types/chat";
 
-const openAIApiHostUrl = "http://localhost:8091";
+const openAIApiHostUrl = "http://127.0.0.1:8091";
 const bigMarketApiHostUrl = "http://127.0.0.1:8098";
-
-// const openAIApiHostUrl = "https://api.gaga.plus";
-// const bigMarketApiHostUrl = "https://api-big-market.gaga.plus";
 
 /**
  * Header 信息
@@ -277,8 +274,3 @@ export const queryStageActivityId = () => {
         }
     })
 }
-
-
-
-
-

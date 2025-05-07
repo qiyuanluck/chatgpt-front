@@ -13,7 +13,6 @@ export function DialogHead(){
     return (
         <div className={styles["dialog-head"]}>
             <div className={styles["dialog-search-box"]}>
-                <input type="button" value={"👉 点击进入此项目课程地址"} onClick={() => window.open('https://bugstack.cn/md/project/chatgpt/chatgpt.html')}/>
             </div>
             <div className={styles["dialog-search-add"]} onClick={() => {
                 let session = chatStore.openSession();
