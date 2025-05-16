@@ -80,7 +80,7 @@ export default function DialogMessagesActions(props: {
                 // { value: GptVersion.CHATGLM_STD, label: 'chatglm_std' },
                 // { value: GptVersion.CHATGLM_PRO, label: 'chatglm_pro' },
                 { value: GptVersion.GLM_4, label: 'glm-4' },
-                // { value: GptVersion.DALL_E_3, label: 'dall-e-3(画图)' },
+                { value: GptVersion.DALL_E_3, label: 'dall-e-3(画图)' },
                 // { value: GptVersion.GPT_3_5_TURBO_16K, label: 'gpt-3.5-turbo-16k' },
                 // { value: GptVersion.DALL_E_2, label: 'dall-e-2(画图)' },
                 { value: GptVersion.GPT_3_5_TURBO, label: 'gpt-3.5-turbo' },

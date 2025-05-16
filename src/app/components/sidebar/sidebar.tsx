@@ -74,14 +74,6 @@ export function SideBar() {
                  }}>
                 <MarketIcon/>
             </div>
-
-            <div className={styles["sidebar-git"]}
-                 onClick={() => {
-                     window.open('https://bugstack.cn/md/project/chatgpt/chatgpt.html');
-                 }}>
-                <GitIcon/>
-            </div>
-
         </div>
     )
 }

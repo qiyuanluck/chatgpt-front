@@ -3,7 +3,7 @@ import {useAccessStore} from "@/app/store/access";
 import {MessageRole} from "@/types/chat";
 
 const openAIApiHostUrl = "http://127.0.0.1:8091";
-const bigMarketApiHostUrl = "http://127.0.0.1:8098";
+const bigMarketApiHostUrl = "http://127.0.0.1:8092";
 
 /**
  * Header 信息

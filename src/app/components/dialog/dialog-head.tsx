@@ -12,8 +12,6 @@ export function DialogHead(){
             state.selectSession]);
     return (
         <div className={styles["dialog-head"]}>
-            <div className={styles["dialog-search-box"]}>
-            </div>
             <div className={styles["dialog-search-add"]} onClick={() => {
                 let session = chatStore.openSession();
                 // 点击时跳转到对应的界面，并传递必要参数信息

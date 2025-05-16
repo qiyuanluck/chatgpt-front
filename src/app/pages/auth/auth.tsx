@@ -12,7 +12,7 @@ export function Auth() {
             <ChatGPTIcon/>
             <div className={styles["auth-title"]}>OpenAiHub</div>
             <div className={styles["auth-sub-title"]}>
-                学习AI开发、掌握AI部署、运用AI提效
+                毕业设计
             </div>
             <img
                 src="/qrcode.png"
