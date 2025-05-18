@@ -1,17 +1,17 @@
-import {useEffect, useState} from "react";
-import {SkuProductResponseDTO} from "@/types/SkuProductResponseDTO";
-import {creditPayExchangeSku, querySkuProductListByActivityId} from "@/apis";
-import {SaleProductEnum} from "@/types/sale_product";
-import {useAccessStore} from "@/app/store/access";
+import { useEffect, useState } from "react";
+import { SkuProductResponseDTO } from "@/types/SkuProductResponseDTO";
+import { creditPayExchangeSku, querySkuProductListByActivityId } from "@/apis";
+import { SaleProductEnum } from "@/types/sale_product";
+import { useAccessStore } from "@/app/store/access";
 
 // @ts-ignore
-export function SkuProduct({handleRefresh, activityId}) {
+export function SkuProduct({ handleRefresh, activityId }) {
     const [SkuProductResponseDTOList, setSkuProductResponseDTOList] = useState<SkuProductResponseDTO[]>([]);
+    const [showSuccessModal, setShowSuccessModal] = useState(false); // 控制弹窗显示
 
     const querySkuProductListByActivityIdHandle = async () => {
         const result = await querySkuProductListByActivityId(activityId);
-
-        const {code, info, data}: { code: string; info: string; data: SkuProductResponseDTO[] } = await result.json();
+        const { code, info, data }: { code: string; info: string; data: SkuProductResponseDTO[] } = await result.json();
 
         // 登录拦截
         if (code === SaleProductEnum.NeedLogin) {
@@ -19,16 +19,16 @@ export function SkuProduct({handleRefresh, activityId}) {
         }
 
         if (code != "0000") {
-            window.alert("查询产品列表，接口调用失败 code:" + code + " info:" + info)
+            window.alert("查询产品列表，接口调用失败 code:" + code + " info:" + info);
             return;
         }
 
-        setSkuProductResponseDTOList(data)
-    }
+        setSkuProductResponseDTOList(data);
+    };
 
     const creditPayExchangeSkuHandle = async (sku: number) => {
         const result = await creditPayExchangeSku(sku);
-        const {code, info, data}: { code: string; info: string; data: boolean } = await result.json();
+        const { code, info, data }: { code: string; info: string; data: boolean } = await result.json();
 
         // 登录拦截
         if (code === SaleProductEnum.NeedLogin) {
@@ -36,23 +36,20 @@ export function SkuProduct({handleRefresh, activityId}) {
         }
 
         if (code != "0000") {
-            window.alert("对话抽奖次数，接口调用失败 code:" + code + " info:" + info)
+            window.alert("兑换抽奖次数失败 code:" + code + " info:" + info);
             return;
         }
 
+        setShowSuccessModal(true); // 显示兑换成功弹窗
         const timer = setTimeout(() => {
-            handleRefresh()
-        }, 350);
-
-        // 清除定时器，以防组件在执行前被卸载
-        return () => clearTimeout(timer);
-
-    }
+            setShowSuccessModal(false); // 3秒后自动关闭弹窗
+            handleRefresh(); // 刷新数据
+        }, 3000);
+    };
 
     useEffect(() => {
-        querySkuProductListByActivityIdHandle().then(r => {
-        });
-    }, [])
+        querySkuProductListByActivityIdHandle();
+    }, []);
 
     return (
         <>
@@ -126,7 +123,33 @@ export function SkuProduct({handleRefresh, activityId}) {
                     ))}
                 </div>
             </div>
-        </>
-    )
 
+            {/* 兑换成功弹窗 */}
+            {showSuccessModal && (
+                <div style={{
+                    position: 'fixed',
+                    top: '0',
+                    left: '0',
+                    width: '100%',
+                    height: '100%',
+                    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    zIndex: '1000'
+                }}>
+                    <div style={{
+                        backgroundColor: 'white',
+                        padding: '20px',
+                        borderRadius: '8px',
+                        boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                        textAlign: 'center'
+                    }}>
+                        <h3 style={{ marginBottom: '16px', color: '#10B981' }}>兑换成功！</h3>
+                        <p>您的抽奖次数已到账，请查收~</p>
+                    </div>
+                </div>
+            )}
+        </>
+    );
 }

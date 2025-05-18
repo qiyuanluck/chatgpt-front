@@ -151,7 +151,7 @@ export function MemberCard({allRefresh, activityId}) {
             <div className={styles["card-container"]}>
                 <div className={styles["card"]}>
                     <div className={styles["card-content"]}>
-                        <a href="#" className={styles["card-title"]}>我的会员卡</a>
+                        <a href="#" className={styles["card-title"]}>可用抽奖次数：20</a>
                         <div className={styles["card-details"]}>
                             <p className={styles["card-item"]}>
                                 <span className={styles["card-icon"]}>💰</span>
@@ -175,7 +175,6 @@ export function MemberCard({allRefresh, activityId}) {
                 <button onClick={handleRefresh} className={styles["refresh-button"]}>
                     刷新⌛️
                 </button>
-
                 <div
                     style={{
                         position: 'absolute',
